@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	namespace：必须与对应的接口全类名一致
+	id:必须与对应接口的某个对应的方法名一致
+	
+ -->
+<mapper namespace="com.cogu.mapper.UserMapper">
+	
+	<insert id="save" parameterType="User"	>
+		insert into user(username,password,salt,status) values(#{userName},#{password},#{salt},#{status})
+	</insert>
+	
+	<update id="update" parameterType="User">
+		update user set password=#{password},status=#{status} where userid=#{userid}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from user where userid=#{userid}
+	</delete>
+	
+	<select id="findByUserId" parameterType="int" resultType="User">
+		select userid ,username ,status from user where userid=#{userid}
+	</select>
+	
+	<select id="findAll" resultType="User">
+		select userid ,username ,status from user
+	</select>
+	
+</mapper>
